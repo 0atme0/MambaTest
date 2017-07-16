@@ -12,10 +12,20 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var startViewModel: StartViewModel!
+    let cityManager = CityManager()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let navigationController = window!.rootViewController! as! UINavigationController
+        
+        self.startViewModel = StartViewModel(cityManager: cityManager)
+        
+        if let viewController = navigationController.topViewController as? StartViewController{
+        
+                viewController.viewModel = startViewModel
+        }
+        
         return true
     }
 
